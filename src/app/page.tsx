@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import Header from "../app/components/Header"; // Import the reusable Header component
-import { Test } from "../../src/helperFunctions/test";
+import { checkPassword } from "../helperFunctions/passWordHandling";
 
 export default function Home() {
   const [password, setPassword] = useState(''); // Store the password input
   const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
+  const [PWClass, setPWClass] = useState(false); // Set true or false for if password is safe
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(Test());
-    console.log(e.target.value)
+    console.log(checkPassword(e.target.value));
     setPassword(e.target.value);
   };
 
