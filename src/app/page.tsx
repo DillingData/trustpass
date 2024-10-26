@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import Header from "../app/components/Header"; // Import the reusable Header component
+import { Test } from "../../src/helperFunctions/test";
 
 export default function Home() {
-  const [password, setPassword] = useState(""); // Store the password input
+  const [password, setPassword] = useState(''); // Store the password input
   const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(Test());
+    console.log(e.target.value)
     setPassword(e.target.value);
   };
 
@@ -23,20 +26,20 @@ export default function Home() {
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Column: Password Checker */}
           <section className="bg-white shadow-xl rounded-lg p-8">
-            <h2 className="text-3xl font-semibold mb-6 text-gray-900">Check Your Password’s Strength</h2>
+            <h2 className="text-3xl font-semibold mb-6 text-gray-900">Check Your Password's Strength</h2>
             <p className="mb-8 text-gray-600">
               Enter your password below to check its strength and security. All processing is done locally in your browser. We never store or send your password data anywhere.
             </p>
 
             <div className="relative mb-6">
-              <input
-                type={showPassword ? "text" : "password"} // Toggle between "text" and "password"
-                value={password}
-                onChange={handlePasswordChange}
-                placeholder="Enter your password"
-                className="w-full p-4 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-
+            <input
+              type={showPassword ? "text" : "password"} // Toggle between "text" and "password"
+              value={password}
+              onChange={handlePasswordChange} // This should trigger on every input change
+              placeholder="Enter your password"
+              className="w-full p-4 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            
               {/* Show/Hide Password Button */}
               <button
                 type="button"
@@ -77,7 +80,8 @@ export default function Home() {
               </button>
             </div>
 
-            <button className="w-full py-3 px-6 bg-blue-600 text-white font-semibold rounded-lg text-lg hover:bg-blue-700 transition-all">
+            <button 
+              className="w-full py-3 px-6 bg-blue-600 text-white font-semibold rounded-lg text-lg hover:bg-blue-700 transition-all">
               Check Password
             </button>
 
