@@ -1,19 +1,15 @@
 
-export function checkPassword (password: string) {
+export function checkPassword(password: string): boolean {
+    // Define the regular expression for special characters
+    const specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
-    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    // Check if the password meets all the criteria
+    const hasMinimumLength = password.length >= 12;
+    const hasSpecialChar = specialChars.test(password);
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
 
-    if (password.length < 12) {
-        return false;
-    } else {
-        if (format.test(password)) {
-            if (/\d/.test(password)) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
+    // Return true only if all conditions are met
+    return hasMinimumLength && hasSpecialChar && hasUppercase && hasLowercase && hasNumber;
 }
