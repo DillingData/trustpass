@@ -10,7 +10,7 @@ export default function Home() {
   const [PWClass, setPWClass] = useState(false); // Set true or false for if password is safe
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(checkPassword(e.target.value));
+    setPWClass(checkPassword(e.target.value));
     setPassword(e.target.value);
   };
 
@@ -88,7 +88,9 @@ export default function Home() {
             {/* Placeholder for password strength output */}
             <div className="mt-6 text-center">
               <p className="text-lg text-gray-700">
-                Password Strength: <span className="font-semibold text-green-500">Strong</span>
+                {/* className={clicked ? "display" : "hide"} */}
+                {/* Password Strength: <span className="font-semibold text-green-500">Strong</span> */}
+                Password Strength: <span className={PWClass ? "font-semibold text-green-500" : "font-semibold text-red-500"}>{PWClass ? "Strong" : "Weak"}</span>
               </p>
             </div>
           </section>
