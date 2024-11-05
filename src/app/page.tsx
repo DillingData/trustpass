@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Header from "../app/components/Header"; // Import the reusable Header component
-import { checkPassword } from "@/helperFunctions/passWordHandling";
+import { checkPassword, checkHackerList } from "@/helperFunctions/passWordHandling";
 
 export default function Home() {
   const [password, setPassword] = useState(''); // Store the password input
@@ -17,7 +17,7 @@ export default function Home() {
 
   const checkPasswordStrength = () => {
     // Perform your password checks here
-    const hackerListCheck = false; // Replace with real check logic
+    const hackerListCheck = checkHackerList(password); // Replace with real check logic
     const safetyCheck = checkPassword(password); // Example safety check
 
     setIsOnHackerList(hackerListCheck);

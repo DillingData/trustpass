@@ -21,3 +21,39 @@ export function checkPassword(password: string): boolean {
     // Return true only if all conditions are met
     return hasMinimumLength && hasSpecialChar && hasUppercase && hasLowercase && hasNumber;
 }
+
+export function checkHackerList(password: string): boolean {
+    // Define a list of common hacker passwords
+    const hackerList = [
+        "password",
+        "123456",
+        "123456789",
+        "12345678",
+        "12345",
+        "1234567",
+        "1234567",
+        "1234567890",
+        "qwerty",
+        "abc123",
+        "123123",
+        "admin",
+        "welcome",
+        "monkey",
+        "master",
+        "sunshine",
+        "letmein", 
+        "password1",
+        "welcome1",
+    ];
+
+    let isOnHackerList: boolean = false;
+
+    for (let counter = 0; counter < hackerList.length; counter++) {
+        if (password === hackerList[counter]) {
+            isOnHackerList = true;
+            break;
+        }
+    }
+
+    return isOnHackerList;
+}
