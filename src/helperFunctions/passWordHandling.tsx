@@ -1,5 +1,5 @@
 
-export function checkPassword(password: string): boolean {
+export async function checkPassword(password: string) {
     // Define the regular expression for special characters
     const specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
@@ -22,39 +22,21 @@ export function checkPassword(password: string): boolean {
     return hasMinimumLength && hasSpecialChar && hasUppercase && hasLowercase && hasNumber;
 }
 
-export function checkHackerList(password: string): boolean {
+export async function checkHackerList(password: string) {
 
-    const reader = new FileReader();
-    //console.log(reader.readAsText('src/app/passwordList/rockyou.txt'));
+    // Fetch the file content
+    const response = await fetch('src/app/passwordList/rockyou.txt');
+    const text = await response.text();
 
-    // Define a list of common hacker passwords
-    const hackerList = [
-        "password",
-        "123456",
-        "123456789",
-        "12345678",
-        "12345",
-        "1234567",
-        "1234567",
-        "1234567890",
-        "qwerty",
-        "abc123",
-        "123123",
-        "admin",
-        "welcome",
-        "monkey",
-        "master",
-        "sunshine",
-        "letmein", 
-        "password1",
-        "welcome1",
-        "test",
-    ];
+    // Split the file content into an array of passwords
+    const hackerList2 = text.split('\n');
 
+    //Boolean to return
     let isOnHackerList: boolean = false;
 
-    for (let counter = 0; counter < hackerList.length; counter++) {
-        if (password === hackerList[counter]) {
+    // Check if the password is in the hacker list
+    for (let counter = 0; counter < hackerList2.length; counter++) {
+        if (password === hackerList2[counter]) {
             isOnHackerList = true;
             break;
         }

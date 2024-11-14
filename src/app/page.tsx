@@ -15,13 +15,13 @@ export default function Home() {
     setPassword(e.target.value);
   };
 
-  const checkPasswordStrength = () => {
+  const checkPasswordStrength = async () => {
     // Perform your password checks here
     const hackerListCheck = checkHackerList(password); // Replace with real check logic
     const safetyCheck = checkPassword(password); // Example safety check
 
-    setIsOnHackerList(hackerListCheck);
-    setIsSafe(safetyCheck);
+    setIsOnHackerList(await hackerListCheck);
+    setIsSafe(await safetyCheck);
 
     setShowResults(true); // Show the results section
   };
