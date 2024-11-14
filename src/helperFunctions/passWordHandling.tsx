@@ -23,6 +23,10 @@ export function checkPassword(password: string): boolean {
 }
 
 export function checkHackerList(password: string): boolean {
+
+    const reader = new FileReader();
+    //console.log(reader.readAsText('src/app/passwordList/rockyou.txt'));
+
     // Define a list of common hacker passwords
     const hackerList = [
         "password",
@@ -44,6 +48,7 @@ export function checkHackerList(password: string): boolean {
         "letmein", 
         "password1",
         "welcome1",
+        "test",
     ];
 
     let isOnHackerList: boolean = false;

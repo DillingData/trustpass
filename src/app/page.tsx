@@ -120,7 +120,7 @@ export default function Home() {
 
                 <button
                   className="w-full py-3 px-6 bg-blue-600 text-white font-semibold rounded-lg text-lg hover:bg-blue-700 transition-all"
-                  onClick={checkPasswordStrength}
+                  onClick={() => checkPasswordStrength()}
                 >
                   Check Password
                 </button>
