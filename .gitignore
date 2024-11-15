@@ -37,3 +37,4 @@ next-env.d.ts
 
 # password list
 src/app/passwordList/rockyou.txt
+public/passwordList/rockyou.txt
