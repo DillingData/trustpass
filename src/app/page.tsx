@@ -10,12 +10,16 @@ export default function Home() {
   const [showResults, setShowResults] = useState(false); // Toggle between input and results
   const [isOnHackerList, setIsOnHackerList] = useState(false); // Check if on hacker wordlist
   const [isSafe, setIsSafe] = useState(false); // Check if password is safe
+  const [loadingAnimation, setLoadingAnimation] = useState(false); // Show loading animation
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
   const checkPasswordStrength = async () => {
+    setShowResults(true); // Show the results section
+    setLoadingAnimation(true); // Show a loading animation
+
     // Perform your password checks here
     const hackerListCheck = checkHackerList(password); // Replace with real check logic
     const safetyCheck = checkPassword(password); // Example safety check
@@ -23,7 +27,7 @@ export default function Home() {
     setIsOnHackerList(await hackerListCheck);
     setIsSafe(await safetyCheck);
 
-    setShowResults(true); // Show the results section
+    setLoadingAnimation(false); // Hide the loading animation
   };
 
   const resetCheck = () => {
@@ -46,48 +50,59 @@ export default function Home() {
             {showResults ? (
               /* Results Section */
               <>
-                <h2 className="text-3xl font-semibold mb-6 text-gray-900">Password Check Results</h2>
+                {loadingAnimation ? (
+                  <>
+                    {/* Loading Animation */}
+                    <div className="flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="text-3xl font-semibold mb-6 text-gray-900">Password Check Results</h2>
 
-                {/* Hacker Wordlist Check */}
-                <div className="mb-4">
-                  <h3 className="text-2xl font-semibold mb-2">Hacker Wordlist Check</h3>
-                  <p className={isOnHackerList ? "text-red-600" : "text-green-600"}>
-                    {isOnHackerList
-                      ? "❌ Your password is on a hacker wordlist. Consider changing it."
-                      : "✔ Your password is not on a known hacker wordlist."}
-                  </p>
-                </div>
+                    {/* Hacker Wordlist Check */}
+                    <div className="mb-4">
+                      <h3 className="text-2xl font-semibold mb-2">Hacker Wordlist Check</h3>
+                      <p className={isOnHackerList ? "text-red-600" : "text-green-600"}>
+                        {isOnHackerList
+                          ? "❌ Your password is on a hacker wordlist. Consider changing it."
+                          : "✔ Your password is not on a known hacker wordlist."}
+                      </p>
+                    </div>
 
-                {/* Password Safety Check */}
-                <div className="mb-4">
-                  <h3 className="text-2xl font-semibold mb-2">Password Safety Check</h3>
-                  <p className={isSafe ? "text-green-600" : "text-red-600"}>
-                    {isSafe
-                      ? "✔ Your password is considered safe."
-                      : "❌ Your password is too weak. Consider making it longer and more complex."}
-                  </p>
-                </div>
+                    {/* Password Safety Check */}
+                    <div className="mb-4">
+                      <h3 className="text-2xl font-semibold mb-2">Password Safety Check</h3>
+                      <p className={isSafe ? "text-green-600" : "text-red-600"}>
+                        {isSafe
+                          ? "✔ Your password is considered safe."
+                          : "❌ Your password is too weak. Consider making it longer and more complex."}
+                      </p>
+                    </div>
 
-                {/* Premium Dark Web Monitoring Feature */}
-                <div className="mt-6 bg-gray-100 p-4 rounded-lg">
-                  <h3 className="text-2xl font-semibold mb-2">Premium Dark Web Monitoring</h3>
-                  <p className="mb-4 text-gray-600">
-                    Upgrade to our premium service to monitor if your password has been leaked on the dark web.
-                  </p>
-                  <button
-                    className="w-full py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all"
-                    onClick={() => alert("Upgrade to Premium feature clicked!")} // Replace with actual subscription logic
-                  >
-                    Upgrade to Premium
-                  </button>
-                </div>
+                    {/* Premium Dark Web Monitoring Feature */}
+                    <div className="mt-6 bg-gray-100 p-4 rounded-lg">
+                      <h3 className="text-2xl font-semibold mb-2">Premium Dark Web Monitoring</h3>
+                      <p className="mb-4 text-gray-600">
+                        Upgrade to our premium service to monitor if your password has been leaked on the dark web.
+                      </p>
+                      <button
+                        className="w-full py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all"
+                        onClick={() => alert("Upgrade to Premium feature clicked!")} // Replace with actual subscription logic
+                      >
+                        Upgrade to Premium
+                      </button>
+                    </div>
 
-                <button
-                  className="mt-4 py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all"
-                  onClick={resetCheck}
-                >
-                  Go Back
-                </button>
+                    <button
+                      className="mt-4 py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all"
+                      onClick={resetCheck}
+                    >
+                      Go Back
+                    </button>
+                  </>
+                )}
               </>
             ) : (
               /* Input Form Section */
