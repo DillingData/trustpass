@@ -23,7 +23,7 @@ export async function checkPassword(password: string) {
 }
 
 export async function checkHackerList(password: string) {
-
+    
     console.log('Started cheking list');
     // Fetch the file content
     const response = await fetch('/passwordList/rockyou.txt');
