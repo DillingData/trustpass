@@ -27,7 +27,5 @@ export function useNetworkTraffic() {
     };
   }, []);
 
-  console.log(traffic);
-
   return traffic;
 }
