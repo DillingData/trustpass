@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Header from "../app/components/Header"; // Import the reusable Header component
 import { checkPassword, checkHackerList } from "@/helperFunctions/passWordHandling";
+import { useNetworkTraffic } from "@/helperFunctions/networkTraffic";
 
 export default function Home() {
   const [password, setPassword] = useState(''); // Store the password input
@@ -11,6 +12,8 @@ export default function Home() {
   const [isOnHackerList, setIsOnHackerList] = useState(false); // Check if on hacker wordlist
   const [isSafe, setIsSafe] = useState(false); // Check if password is safe
   const [loadingAnimation, setLoadingAnimation] = useState(false); // Show loading animation
+
+  const traffic = useNetworkTraffic(); // Get the network traffic data
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -151,7 +154,13 @@ export default function Home() {
             </p>
 
             <div className="bg-white border border-gray-300 p-4 rounded-lg h-72 overflow-auto">
-              <p className="text-gray-500 text-sm">No traffic generated yet...</p>
+              {traffic.length > 0 ? (
+                traffic.map((entry, index) => (
+                  <p key={index} className="text-gray-500 text-sm">{entry}</p>
+                ))
+              ) : (
+                <p className="text-gray-500 text-sm">No traffic generated yet...</p>
+              )}
             </div>
           </div>
         </div>
