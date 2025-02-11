@@ -22,6 +22,7 @@ export async function checkPassword(password: string) {
     return hasMinimumLength && hasSpecialChar && hasUppercase && hasLowercase && hasNumber;
 }
 
+/*
 export async function checkHackerList(password: string) {
     
     console.log('Started cheking list');
@@ -45,4 +46,22 @@ export async function checkHackerList(password: string) {
     }
 
     return isOnHackerList;
+}
+    */
+
+export async function checkHackerList(password: string): Promise<boolean> {
+    console.log('Started checking list');
+    
+    // Fetch the file content
+    const response = await fetch('/passwordList/rockyou.txt');
+    const text = await response.text();
+
+    // Split the file content into an array of passwords
+    const hackerListArray = text.split('\n');
+
+    // Convert the array to a Set for faster lookups
+    const hackerListSet = new Set(hackerListArray);
+
+    // Check if the password is in the hacker list
+    return hackerListSet.has(password);
 }
