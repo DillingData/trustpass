@@ -11,16 +11,18 @@ export async function checkPassword(password: string) {
     const hasSpecialChar = specialChars.test(password);
 
     // Check if the password has at least one uppercase letter
-    const hasUppercase = /[A-Z]/.test(password);
+    const hasUpper = /[\p{Lu}]/u.test(password); 
+    //const hasUppercase = /[A-Z]/.test(password);
 
     // Check if the password has at least one lowercase letter
-    const hasLowercase = /[a-z]/.test(password);
+    const hasLower = /[\p{Ll}]/u.test(password);
+    //const hasLowercase = /[a-z]/.test(password);
 
     // Check if the password has at least one number
     const hasNumber = /\d/.test(password);
 
     // Return true only if all conditions are met
-    return hasMinimumLength && hasSpecialChar && hasUppercase && hasLowercase && hasNumber;
+    return hasMinimumLength && hasSpecialChar && hasUpper && hasLower && hasNumber;
 }
 
 //Checks if the user entered password is part of the hackerlist
