@@ -11,7 +11,7 @@ export async function checkPassword(password: string) {
     const hasSpecialChar = specialChars.test(password);
 
     // Check if the password has at least one uppercase letter
-    const hasUpper = /[\p{Lu}]/u.test(password); 
+    const hasUpper = /[\p{Lu}]/u.test(password);
     //const hasUppercase = /[A-Z]/.test(password);
 
     // Check if the password has at least one lowercase letter

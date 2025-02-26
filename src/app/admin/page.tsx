@@ -7,7 +7,7 @@ export default function Admin() {
         <div>
             <Header />
             <div>
-                <h1>Admin Page</h1>
+                <h1 className="text-xl mt-20">Admin Page</h1>
             </div>
         </div>
     );
