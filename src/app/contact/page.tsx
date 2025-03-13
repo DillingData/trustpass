@@ -1,9 +1,25 @@
 "use client"; // Ensure this is treated as a client component
 
+import { Console } from "console";
 import Header from "../components/Header"; // Import the reusable Header component
 import { EnvelopeIcon, UserIcon, ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/outline'; // Import icons from Heroicons v2
 
 export default function Contact() {
+
+  const handleSendMessage = (event: React.FormEvent ) => {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const name = (form.querySelector('#name') as HTMLInputElement)?.value;
+    const email = (form.querySelector('#email') as HTMLInputElement)?.value;
+    const message = (form.querySelector('#message') as HTMLInputElement)?.value;
+    if (!name || !email || !message) {
+      alert('Please fill out all fields before trying to send a message!');
+      return;
+    } else {
+      //call backend to input message into database
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col justify-between bg-gray-50 text-gray-800">
       <Header /> {/* Include the reusable header */}
@@ -21,7 +37,7 @@ export default function Contact() {
           </p>
 
           {/* Contact Form */}
-          <form className="bg-white shadow-lg rounded-lg p-8 space-y-6">
+          <form className="bg-white shadow-lg rounded-lg p-8 space-y-6" onSubmit={handleSendMessage}>
             
             {/* Name Field */}
             <div className="relative">
