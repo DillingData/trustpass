@@ -11,8 +11,8 @@ export default function Contact() {
     const form = event.target as HTMLFormElement;
     const name = (form.querySelector('#name') as HTMLInputElement)?.value;
     const email = (form.querySelector('#email') as HTMLInputElement)?.value;
-    const message = (form.querySelector('#message') as HTMLInputElement)?.value;
-    if (!name || !email || !message) {
+    const content = (form.querySelector('#message') as HTMLInputElement)?.value;
+    if (!name || !email || !content) {
       alert('Please fill out all fields before trying to send a message!');
       return;
     } else {
@@ -20,10 +20,9 @@ export default function Contact() {
       fetch('http://localhost:3000/api/addemail', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({name, email, message})
+        body: JSON.stringify({name, email, content})
       })
         .catch((error) => console.error ('Error:', error));
-        
     }
   };
 
