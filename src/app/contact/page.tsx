@@ -17,6 +17,13 @@ export default function Contact() {
       return;
     } else {
       //call backend to input message into database
+      fetch('http://localhost:3000/api/addemail', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({name, email, message})
+      })
+        .catch((error) => console.error ('Error:', error));
+        
     }
   };
 
