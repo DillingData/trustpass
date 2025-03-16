@@ -1,8 +1,9 @@
 "use client"; // Ensure this is treated as a client component
 
-import { Console } from "console";
+import { toast } from "react-toastify";
 import Header from "../components/Header"; // Import the reusable Header component
 import { EnvelopeIcon, UserIcon, ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/outline'; // Import icons from Heroicons v2
+import { ToastContainer } from "react-toastify";
 
 export default function Contact() {
 
@@ -24,11 +25,20 @@ export default function Contact() {
       })
         .then((response) => {
           if (response.ok) {
-            alert('Message sent successfully!');
+            toast.success("✅ Message sent successfully!", {
+              position: "top-center",
+              autoClose: 3000,
+            });
             form.reset();
           }
         })
-        .catch((error) => console.error ('Error:', error));
+        .catch((error) => {
+          toast.error("❌ Error sending message. Please try again later.", {
+            position: "top-center",
+            autoClose: 3000,
+          });
+          console.error ('Error:', error)
+        });
     }
   };
 
@@ -100,6 +110,7 @@ export default function Contact() {
             >
               Send Message
             </button>
+            <ToastContainer />
           </form>
         </div>
       </main>
