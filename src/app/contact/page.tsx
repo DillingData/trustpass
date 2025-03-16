@@ -22,6 +22,12 @@ export default function Contact() {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({name, email, content})
       })
+        .then((response) => {
+          if (response.ok) {
+            alert('Message sent successfully!');
+            form.reset();
+          }
+        })
         .catch((error) => console.error ('Error:', error));
     }
   };
