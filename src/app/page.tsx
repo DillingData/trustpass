@@ -103,8 +103,19 @@ export default function Home() {
                       </button>
                       
                       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                        <h2 className="text-lg font-semibold">Hello, TypeScript!</h2>
-                        <p className="mt-2">This is a modal popup in Next.js using TypeScript.</p>
+                        <h2 className="text-lg font-semibold">Work in progress!</h2>
+                        <h5>Sign up for waiting list</h5>
+                        <div className="relative">
+                          <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
+                          <div className="mt-1 relative rounded-md shadow-sm">
+                            <input
+                              type="email"
+                              id="email"
+                              placeholder="Enter your email"
+                              className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            />
+                          </div>
+                        </div>
                       </Modal>
                       
                     </div>
