@@ -13,6 +13,7 @@ export default function Home() {
   const [isOnHackerList, setIsOnHackerList] = useState(false); // Check if on hacker wordlist
   const [isSafe, setIsSafe] = useState(false); // Check if password is safe
   const [loadingAnimation, setLoadingAnimation] = useState(false); // Show loading animation
+  const [email, setEmail] = useState(''); // Store email input
 
   const traffic = useNetworkTraffic(); // Get the network traffic data
 
@@ -38,6 +39,18 @@ export default function Home() {
     setShowResults(false); // Go back to the input form
     setPassword('');
   };
+
+  const handleSubmitEmail = () => {
+    if (!email) {
+      alert('Please enter your email address!');
+      return;
+    }
+
+    alert(`Email sent to ${email} for premium features!`);
+    setEmail('');
+
+    setIsModalOpen(false);
+  }
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -103,19 +116,73 @@ export default function Home() {
                       </button>
                       
                       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                        <h2 className="text-lg font-semibold">Work in progress!</h2>
-                        <h5>Sign up for waiting list</h5>
-                        <div className="relative">
-                          <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
-                          <div className="mt-1 relative rounded-md shadow-sm">
+                        {/* Modal Header */}
+                        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                          <h2 className="text-xl font-semibold text-gray-900">
+                            Exciting Features Coming Soon!
+                          </h2>
+                        </div>
+
+                        {/* Modal Body */}
+                        <div className="p-4 space-y-4">
+                          <p className="text-gray-600">
+                            We're working hard to bring you new premium features that will enhance your experience:
+                          </p>
+                          <ul className="space-y-2 text-gray-700">
+                            <li className="flex items-start">
+                              <span className="mr-2 text-blue-500">✓</span>
+                              <span>
+                                <strong>Advanced Security Checks:</strong> Instantly verify your email against multiple hacker wordlists to ensure your credentials haven't been compromised.
+                              </span>
+                            </li>
+                            <li className="flex items-start">
+                              <span className="mr-2 text-blue-500">✓</span>
+                              <span>
+                                <strong>Dark Web Monitoring:</strong> Receive alerts if your email appears in any dark web breaches, keeping you informed and secure.
+                              </span>
+                            </li>
+                            <li className="flex items-start">
+                              <span className="mr-2 text-blue-500">✓</span>
+                              <span>
+                                <strong>Priority Support:</strong> Get expedited assistance from our dedicated support team for any inquiries or issues.
+                              </span>
+                            </li>
+                          </ul>
+                          <p className="text-gray-600">
+                            Be among the first to access these features by joining our waiting list.
+                          </p>
+
+                          {/* Email Input */}
+                          <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                              Email Address
+                            </label>
                             <input
                               type="email"
                               id="email"
                               placeholder="Enter your email"
-                              className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              className="w-full p-3 mt-1 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              onChange={(e) => setEmail(e.target.value)}
                             />
                           </div>
                         </div>
+
+                        {/* Modal Footer */}
+                        <div className="flex justify-end p-4 border-t border-gray-200">
+                          <button
+                            onClick={() => setIsModalOpen(false)}
+                            className="px-4 py-2 mr-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            onClick={handleSubmitEmail}
+                            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          >
+                            Join Waiting List
+                          </button>
+                        </div>
+
                       </Modal>
                       
                     </div>
