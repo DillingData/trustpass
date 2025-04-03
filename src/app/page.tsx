@@ -5,6 +5,8 @@ import Header from "../app/components/Header"; // Import the reusable Header com
 import { checkPassword, checkHackerList } from "@/helperFunctions/passWordHandling";
 import { useNetworkTraffic } from "@/helperFunctions/networkTraffic";
 import Modal from "./components/waitingListModal";
+import { toast } from "react-toastify"; // Import toast for notifications
+import { ToastContainer } from "react-toastify"; // Import toast container for notifications
 
 export default function Home() {
   const [password, setPassword] = useState(''); // Store the password input
@@ -42,11 +44,17 @@ export default function Home() {
 
   const handleSubmitEmail = () => {
     if (!email) {
-      alert('Please enter your email address!');
+      toast.error("❌ Please enter your email!", {
+        position: "top-center",
+        autoClose: 3000,
+      });
       return;
     }
 
-    alert(`Email sent to ${email} for premium features!`);
+    toast.success(`✔ Email sent to ${email} for premium features!`, {
+      position: "top-center",
+      autoClose: 3000,
+    });
     setEmail('');
 
     setIsModalOpen(false);
@@ -182,9 +190,8 @@ export default function Home() {
                             Join Waiting List
                           </button>
                         </div>
-
                       </Modal>
-                      
+                      <ToastContainer />
                     </div>
 
                     <button
