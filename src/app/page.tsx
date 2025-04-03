@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Header from "../app/components/Header"; // Import the reusable Header component
 import { checkPassword, checkHackerList } from "@/helperFunctions/passWordHandling";
 import { useNetworkTraffic } from "@/helperFunctions/networkTraffic";
+import Modal from "./components/waitingListModal";
 
 export default function Home() {
   const [password, setPassword] = useState(''); // Store the password input
@@ -37,6 +38,8 @@ export default function Home() {
     setShowResults(false); // Go back to the input form
     setPassword('');
   };
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-gray-50 text-gray-800">
@@ -93,10 +96,17 @@ export default function Home() {
                       </p>
                       <button
                         className="w-full py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all"
-                        onClick={() => alert("Upgrade to Premium feature clicked!")} // Replace with actual subscription logic
+                        //onClick={() => alert("Upgrade to Premium feature clicked!")} // Replace with actual subscription logic
+                        onClick={() => setIsModalOpen(true)}
                       >
                         Upgrade to Premium
                       </button>
+                      
+                      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                        <h2 className="text-lg font-semibold">Hello, TypeScript!</h2>
+                        <p className="mt-2">This is a modal popup in Next.js using TypeScript.</p>
+                      </Modal>
+                      
                     </div>
 
                     <button
