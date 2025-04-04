@@ -51,10 +51,21 @@ export default function Home() {
       return;
     }
 
-    toast.success(`Thank you for your patience, we will get back to you ASAP when the new features are available`, {
-      position: "top-center",
-      autoClose: 3000,
-    });
+    toast.success(
+      `Thank you for signing up!
+      We appreciate your patience as we work on bringing you the new premium features. We'll notify you as soon as they’re available so you can be among the first to try them out!`, 
+      {
+        position: "top-center",
+        autoClose: 3000,
+        style: {
+          fontSize: "16px",
+          color: "#333",
+          fontWeight: "600",
+          lineHeight: "1.5",
+        },
+      }
+    );
+    
     setEmail('');
 
     setIsModalOpen(false);
