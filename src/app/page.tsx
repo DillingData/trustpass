@@ -51,7 +51,7 @@ export default function Home() {
       return;
     }
 
-    toast.success(`✔ Email sent to ${email} for premium features!`, {
+    toast.success(`Thank you for your patience, we will get back to you ASAP when the new features are available`, {
       position: "top-center",
       autoClose: 3000,
     });
