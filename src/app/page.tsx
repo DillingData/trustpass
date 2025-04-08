@@ -7,6 +7,7 @@ import { useNetworkTraffic } from "@/helperFunctions/networkTraffic";
 import Modal from "./components/waitingListModal";
 import { toast } from "react-toastify"; // Import toast for notifications
 import { ToastContainer } from "react-toastify"; // Import toast container for notifications
+import { addDataToDatabase } from "@/helperFunctions/emailHandling";
 
 export default function Home() {
   const [password, setPassword] = useState(''); // Store the password input
@@ -42,33 +43,41 @@ export default function Home() {
     setPassword('');
   };
 
-  const handleSubmitEmail = () => {
+  const handleSubmitEmail = async () => {
     if (!email) {
       toast.error("❌ Please enter your email!", {
         position: "top-center",
         autoClose: 3000,
       });
       return;
-    }
-
-    toast.success(
-      `Thank you for signing up!
-      We appreciate your patience as we work on bringing you the new premium features. We'll notify you as soon as they’re available so you can be among the first to try them out!`, 
-      {
-        position: "top-center",
-        autoClose: 3000,
-        style: {
-          fontSize: "16px",
-          color: "#333",
-          fontWeight: "600",
-          lineHeight: "1.5",
-        },
-      }
-    );
+    } else {
+      const statusCode:number = await addDataToDatabase("Waiting List", email, "Waiting List");
+      if (statusCode === 200) {
+        toast.success(
+          `Thank you for signing up!
+          We appreciate your patience as we work on bringing you the new premium features. We'll notify you as soon as they’re available so you can be among the first to try them out!`, 
+          {
+            position: "top-center",
+            autoClose: 3000,
+            style: {
+              fontSize: "16px",
+              color: "#333",
+              fontWeight: "600",
+              lineHeight: "1.5",
+            },
+          }
+        );
+        
+        setEmail('');
     
-    setEmail('');
-
-    setIsModalOpen(false);
+        setIsModalOpen(false);
+      } else {
+        toast.error("❌ Something went wrong. Please try again later.", {
+          position: "top-center",
+          autoClose: 3000,
+        });
+      }
+    }
   }
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

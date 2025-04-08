@@ -12,7 +12,8 @@ export async function addDataToDatabase(name: string, email: string, content: st
     }
     
     const data = await response.json();
-    return data;
+    
+    return response.status;
   } catch (error) {
     console.error('Error adding data to database:', error);
     throw error;
