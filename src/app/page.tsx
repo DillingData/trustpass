@@ -52,7 +52,8 @@ export default function Home() {
       return;
     } else {
       const statusCode:number = await addDataToDatabase("Waiting List", email, "Waiting List");
-      if (statusCode === 200) {
+      console.log(statusCode);
+      if (statusCode === 201) {
         toast.success(
           `Thank you for signing up!
           We appreciate your patience as we work on bringing you the new premium features. We'll notify you as soon as they’re available so you can be among the first to try them out!`, 
