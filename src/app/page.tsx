@@ -129,7 +129,7 @@ export default function Home() {
                           : "❌ Your password is too weak. Consider making it longer and more complex."}
                       </p>
                     </div>
-
+                     
                     {/* Premium Dark Web Monitoring Feature */}
                     <div className="mt-6 bg-gray-100 p-4 rounded-lg">
                       <h3 className="text-2xl font-semibold mb-2">Premium Dark Web Monitoring</h3>
