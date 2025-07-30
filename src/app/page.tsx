@@ -155,7 +155,7 @@ export default function Home() {
                         {/* Modal Body */}
                         <div className="p-4 space-y-4">
                           <p className="text-gray-600">
-                            We're working hard to bring you new premium features that will enhance your experience:
+                            We&apos;re working hard to bring you new premium features that will enhance your experience:
                           </p>
                           <ul className="space-y-2 text-gray-700">
                             <li className="flex items-start">

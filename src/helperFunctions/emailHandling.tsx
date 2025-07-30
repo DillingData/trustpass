@@ -11,7 +11,7 @@ export async function addDataToDatabase(name: string, email: string, content: st
         throw new Error('Network response was not ok');
         }
         
-        const data = await response.json();
+        void response.json();
         
         return response.status;
     } catch (error) {
