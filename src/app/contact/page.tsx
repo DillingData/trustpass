@@ -55,7 +55,7 @@ export default function Contact() {
           {/* Smaller Contact Us heading */}
           <h1 className="text-3xl font-extrabold text-gray-900 mb-6">Contact Us</h1>
           <p className="text-lg text-gray-600 mb-12">
-            We'd love to hear from you. Fill out the form below to get in touch with us, and we'll respond as soon as we can.
+            We&apos;d love to hear from you. Fill out the form below to get in touch with us, and we&apos;ll respond as soon as we can.
           </p>
 
           {/* Contact Form */}
