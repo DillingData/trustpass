@@ -161,7 +161,7 @@ export default function Home() {
                             <li className="flex items-start">
                               <span className="mr-2 text-blue-500">✓</span>
                               <span>
-                                <strong>Advanced Security Checks:</strong> Instantly verify your email against multiple hacker wordlists to ensure your credentials haven't been compromised.
+                                <strong>Advanced Security Checks:</strong> Instantly verify your email against multiple hacker wordlists to ensure your credentials haven&apos;t been compromised.
                               </span>
                             </li>
                             <li className="flex items-start">
@@ -228,7 +228,7 @@ export default function Home() {
               /* Input Form Section */
               <>
                 <h2 className="text-3xl font-semibold mb-6 text-gray-900">
-                  Check Your Password's Strength
+                  Check Your Password&apos;s Strength
                 </h2>
                 <p className="mb-8 text-gray-600">
                   Enter your password below to check its strength and security. All processing is done locally in your browser. We never store or send your password data anywhere.
